@@ -66,7 +66,7 @@ int main() {
     code_morse ["9"] = "----.";
     code_morse [" "] = "/";
 
-    // chosing text to encode and saving it in a file if file is open
+    // chosing text to encode and saving it in a file
 
     string texte;
     string nomficheracoder;
@@ -80,7 +80,11 @@ int main() {
     string const cheminfichier(nomficheracoder);
     ofstream fichier (cheminfichier.c_str(),ios::app);
 
+    // when folder is open, or when there is an error
+
     if (fichier){
+
+        //putting in lower case,...
 
         fichier << texte <<endl;
         ifstream fichier2 (cheminfichier.c_str());
@@ -91,6 +95,7 @@ int main() {
             texteatrad = tolower(texteatrad);
             texteatradcopie = texteatrad;
 
+            //wrting results on the file
             if (code_morse.count(texteatradcopie)== 1){
                 fichier << code_morse[texteatradcopie] << " ";
             }
@@ -100,6 +105,7 @@ int main() {
         }
     }
     else {
+            // in case of non-opening of the file
         cerr << "ERROR : ouverture du fichier impossible" << endl;
     }
     return 0;
